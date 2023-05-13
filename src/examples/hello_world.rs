@@ -1,5 +1,9 @@
-
-use bevy::{app::App, prelude::{Commands, Component, Query, With, Plugin, Res, ResMut, Resource}, DefaultPlugins, time::{Time, Timer, TimerMode}};
+use bevy::{
+    app::App,
+    prelude::{Commands, Component, Plugin, Query, Res, ResMut, Resource, With},
+    time::{Time, Timer, TimerMode},
+    DefaultPlugins,
+};
 fn hello_world() {
     println!("hello world!");
 }
@@ -8,7 +12,6 @@ fn hello_world() {
 struct Person;
 #[derive(Component)]
 struct Name(String);
-
 
 fn add_people(mut commands: Commands) {
     commands.spawn((Person, Name("Elaina Proctor".to_string())));
@@ -23,8 +26,7 @@ struct GreetTimer(Timer);
 //     }
 // }
 
-fn greet_people(
-    time: Res<Time>, mut timer: ResMut<GreetTimer>, query: Query<&Name, With<Person>>) {
+fn greet_people(time: Res<Time>, mut timer: ResMut<GreetTimer>, query: Query<&Name, With<Person>>) {
     // update our timer with the time elapsed since the last update
     // if that caused the timer to finish, we say hello to everyone
     if timer.0.tick(time.delta()).just_finished() {
@@ -44,18 +46,17 @@ impl Plugin for HelloPlugin {
         // .add_system(greet_people);
 
         app.insert_resource(GreetTimer(Timer::from_seconds(2.0, TimerMode::Repeating)))
-        .add_startup_system(add_people)
-        .add_system(greet_people);
+            .add_startup_system(add_people)
+            .add_system(greet_people);
     }
 }
 
-
-pub fn hello_wrold_main(){
+pub fn hello_wrold_main() {
     App::new()
-    .add_plugins(DefaultPlugins)
-    .add_startup_system(add_people)
-    // .add_system(hello_world)
-    // .add_system(greet_people)
-    .add_plugin(HelloPlugin)
-    .run();
+        .add_plugins(DefaultPlugins)
+        .add_startup_system(add_people)
+        // .add_system(hello_world)
+        // .add_system(greet_people)
+        .add_plugin(HelloPlugin)
+        .run();
 }

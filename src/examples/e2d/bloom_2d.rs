@@ -25,7 +25,8 @@ fn setup(
     asset_server: Res<AssetServer>,
 ) {
     commands.spawn((
-        Camera2dBundle {//2d相机设置
+        Camera2dBundle {
+            //2d相机设置
             camera: Camera {
                 hdr: true, // 1. HDR is required for bloom 对于bloom效果，需要启用HDR
                 ..default()
@@ -38,7 +39,7 @@ fn setup(
 
     // Sprite
     //Sprite是指在计算机图形学中，用于表示二维图像的基本元素。它通常是一个矩形区域，包含了图像的像素数据和一些元数据，如位置、大小、旋转、透明度等。Sprite可以用于创建2D游戏中的角色、道具、背景等元素，也可以用于创建用户界面中的按钮、图标等元素。在游戏引擎中，通常会提供一些工具和API来方便地创建、加载和管理Sprite
-   //加载图片
+    //加载图片
     commands.spawn(SpriteBundle {
         texture: asset_server.load("branding/icon.png"),
         sprite: Sprite {
