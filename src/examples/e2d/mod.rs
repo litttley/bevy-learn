@@ -1,8 +1,14 @@
-pub mod e2d_shapes;
 pub mod bloom_2d;
+pub mod e2d_shapes;
 pub mod mesh2d;
 pub mod mesh2d_manual;
 pub mod mesh2d_vertex_color_texture;
 pub mod move_sprite;
 pub mod pixel_perfect;
 pub mod rotation;
+pub mod sprite;
+pub mod sprite_flipping;
+pub mod sprite_sheet;
+pub mod text2d;
+pub mod texture_atlas;
+pub mod transparency_2d;
